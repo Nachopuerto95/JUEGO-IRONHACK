@@ -12,7 +12,7 @@ class Bullet {
 
         this.sprite = new Image();
         this.spriteReverse = new Image();
-        this.sprite.src = '/assets/img/bullet.png';
+        this.sprite.src = 'assets/img/bullet.png';
         this.sprite.verticalFrames = 1;
         this.sprite.verticalFrameIndex = 0;
         this.sprite.horizontalFrames = 4;

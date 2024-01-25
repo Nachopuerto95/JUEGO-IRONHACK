@@ -15,9 +15,7 @@ class Player {
         this.isInMiddle = false;
 
         this.sprite = new Image();
-        this.spriteReverse = new Image();
-        this.sprite.src = '/assets/img/playerSprite.png';
-        this.spriteReverse.src = '/assets/img/playerSpriteReverse.png';
+        this.sprite.src = 'assets/img/playerSprite.png';
         this.sprite.verticalFrames = 7;
         this.sprite.verticalFrameIndex = 0;
         this.sprite.horizontalFrames = 2;
@@ -27,9 +25,7 @@ class Player {
             this.sprite.frameWidth = this.sprite.width / this.sprite.horizontalFrames -1;
             this.sprite.frameHeight = this.sprite.height / this.sprite.verticalFrames;
         }
-        this.spriteReverse.onload = () => {
-            this.spriteReverse.isReady = true;
-        }
+    
 
         this.movements = {
             right: false,
@@ -50,7 +46,7 @@ class Player {
             case KEY_RIGHT:
                 this.movements.right = enabled;
                 break;
-                case KEY_LEFT:
+            case KEY_LEFT:
                     this.movements.slow = enabled;
                     break;
             case KEY_UP:
@@ -61,8 +57,10 @@ class Player {
             case KEY_FIRE:
                 if (enabled) {
                 this.fire();
-                break;
                 }
+                break;
+            default:
+                
         } 
     }
 
@@ -78,6 +76,17 @@ class Player {
     clear() {
         this.bullets = this.bullets.filter((bullet) => bullet.y < this.y0 + BULLET_END);
     }
+
+    slow() {
+        if (this.movements.slow) {
+            BACKGROUND_SPEED = SLOWED_GAME;
+        } else {
+            BACKGROUND_SPEED = ORIGINAL_SPEED;
+        }
+    }
+
+    
+
 
     jump() {
         if (!this.movements.isJumping) {
@@ -109,6 +118,7 @@ class Player {
     }
 
     draw() {
+
         if (this.sprite.isReady) {
     
             this.ctx.drawImage(

@@ -18,7 +18,7 @@ class Background {
         }
 
         this.sprite = new Image();
-        this.sprite.src = '/assets/img/Background.png';
+        this.sprite.src = 'assets/img/Background.png';
         this.sprite.onload = () => {
             this.sprite.isReady = true;
         }
@@ -35,14 +35,10 @@ class Background {
     }
 
     move() {
-        if (this.player.x > this.ctx.canvas.width / 2 - this.player.w && !this.player.movements.slow) {
-            this.x -= this.vx;
-        } else if (this.player.x > this.ctx.canvas.width / 2 - this.player.w && this.player.movements.slow)  {
-            this.x -= this.vx * SLOWED_GAME
+        if (this.player.x > this.ctx.canvas.width / 2 - this.player.w) {
+            this.x -= BACKGROUND_SPEED;
         }
-
-
-
+        
         if (this.x < -this.w) {
             this.x = 0;
         }
