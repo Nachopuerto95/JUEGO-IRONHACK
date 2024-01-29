@@ -4,7 +4,7 @@ class Background {
 
         this.ctx = ctx;
         this.x = 0;
-        this.vx = BACKGROUND_SPEED;
+        this.vx = ORIGINAL_SPEED;
         this.y = 0;
         this.w = this.ctx.canvas.width;
         this.h = this.ctx.canvas.height;
@@ -34,9 +34,9 @@ class Background {
         }
     }
 
-    move() {
-        if (this.player.x > this.ctx.canvas.width / 2 - this.player.w) {
-            this.x -= BACKGROUND_SPEED;
+    move(currentSpeed) {
+        if (this.player.x > this.ctx.canvas.width / 4 - this.player.w) {
+            this.x -= currentSpeed;
         }
         
         if (this.x < -this.w) {

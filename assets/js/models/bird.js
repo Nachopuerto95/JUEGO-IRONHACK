@@ -1,14 +1,14 @@
-    class Snail {
+class Bird {
     constructor(ctx, x, y) {
         this.ctx = ctx;
         this.x = x;
         this.vx = ORIGINAL_SPEED
         this.y = y;
-        this.w = 100;;
-        this.h = 100;
+        this.w = 70;;
+        this.h = 60;
 
         this.sprite = new Image();
-        this.sprite.src = 'assets/img/snailSprite.png';
+        this.sprite.src = 'assets/img/Bird.png';
         this.sprite.verticalFrames = 1;
         this.sprite.verticalFrameIndex = 0;
         this.sprite.horizontalFrames = 2;
@@ -26,14 +26,14 @@
 
         this.lifes = 1;
 
-        this.points = 150;
+        this.points = 200;
         
     }
 
     animate() {
         this.animationTick++
 
-        if (this.animationTick >= PLAYER_ANIMATION){
+        if (this.animationTick >= BIRD_ANIMATION){
             this.animationTick = 0;
             this.sprite.horizontalFrameIndex++;
            
@@ -46,7 +46,7 @@
 
     move(currentSpeed) {
         this.isInCanvas = this.x + this.w > 0;
-        this.x -= currentSpeed;
+        this.x -= currentSpeed + 4;
         
     }
 

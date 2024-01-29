@@ -1,17 +1,17 @@
-    class Snail {
+class Rock {
     constructor(ctx, x, y) {
         this.ctx = ctx;
         this.x = x;
         this.vx = ORIGINAL_SPEED
         this.y = y;
-        this.w = 100;;
-        this.h = 100;
+        this.w = 65;;
+        this.h = 65;
 
         this.sprite = new Image();
-        this.sprite.src = 'assets/img/snailSprite.png';
+        this.sprite.src = 'assets/img/rock.png';
         this.sprite.verticalFrames = 1;
         this.sprite.verticalFrameIndex = 0;
-        this.sprite.horizontalFrames = 2;
+        this.sprite.horizontalFrames = 1;
         this.sprite.horizontalFrameIndex = 0;
         this.sprite.onload = () => {
             this.sprite.isReady = true;
@@ -24,30 +24,15 @@
 
         this.isInCanvas = true;
 
-        this.lifes = 1;
+        this.lifes = 3;
 
         this.points = 150;
         
     }
 
-    animate() {
-        this.animationTick++
-
-        if (this.animationTick >= PLAYER_ANIMATION){
-            this.animationTick = 0;
-            this.sprite.horizontalFrameIndex++;
-           
-            if(this.sprite.horizontalFrameIndex > this.sprite.horizontalFrames - 1) {
-                this.sprite.horizontalFrameIndex = 0;
-                
-            }
-        }
-    }
-
     move(currentSpeed) {
         this.isInCanvas = this.x + this.w > 0;
         this.x -= currentSpeed;
-        
     }
 
 
@@ -66,8 +51,6 @@
                 this.h
 
             )     
-
-            this.animate(); 
         } 
     }
 

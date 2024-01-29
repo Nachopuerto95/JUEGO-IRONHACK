@@ -5,17 +5,95 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="assets/css/main.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="shortcut icon" href="/assets/img/spider.png" type="image/x-icon">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans&display=swap" rel="stylesheet">
 
 </head>
 <body>
-    <canvas id="main-canvas"></canvas>
+    <input id="volume-control" type="range" />
+
+    
+
+    <main class="game">
+
+        <div  id="play-game-panel" class="play-game">
+            <div class="flags-container">
+                <button id="uk-flag"></button>
+                <button id="spain-flag"></button>
+                <button id="play-game">PLAY</button>
+            </div>
+            
+        </div>
+
+         <div id="startgame-panel" class="startgame-panel hidden">
+        <div class="startgame-panel-text" id="startgame-panel-text">
+            <p id="press-start" class="press-start">PRESS ENTER TO START</p>
+        </div>
+    </div>
+
+    <div class="controls-panel hidden" id="controls-panel">
+        <p>CONTROLS</p>
+        <button class="btn-back" type="button" id="btn-back">BACK TO MENU</button>
+    </div>
+
+
+    <div  id="scores-panel" class="scores-panel hidden panel">
+        <p >SCORES</p>
+        <ol id="allScores" class="allScores">
+        
+
+        </ol>
+        <button  class="btn-back" type="button" id="btn-back2">BACK TO MENU</button>
+
+    </div>
+
+    <div id="start-panel" class="panel hidden"> 
+        <ul>
+            <li><button id="btn-start-game" class="btn game-button selected"> START</button></li>
+            <li><button id="btn-controls" class="btn game-button"> CONTROLS</button></li>
+            <li><button id="btn-scores" class="btn game-button"> SCORES</button></li>
+        </ul>
+    </div>
+
+    <div id="game-over-panel" class="gameover-panel hidden">
+        
+        <ul>
+            <p>GAME OVER</p>
+            <p id="your-score">SCORE: 0</p>
+            <form action="">
+                <label for="nombre">NAME:</label>
+                <input  type="text" id="name-input" name="nombre" placeholder="" maxlength="3" pattern="[A-Za-z]+" autofocus>
+                <button type="button" id="save-name" class="game-over-buttons btn">SAVE</button>
+            </form>
+            <button id="try-again-btn" class="try-again-btn btn selected game-over-buttons">TRY AGAIN</button>
+
+            
+        </ul>
+    </div>
+
+    <canvas id="main-canvas">
+
+
+    </canvas>
+    </main>
+
+   
 
     <script src="assets/js/constants.js"></script>
+    <script src="assets/js/models/adiomanager.js"></script>
     <script src="assets/js/models/background.js"></script>
     <script src="assets/js/models/game.js"></script>
     <script src="assets/js/models/player.js"></script>
+    <script src="assets/js/models/timeunit.js"></script>
+    <script src="assets/js/models/deadAnimation.js"></script>
+    <script src="assets/js/models/drawpoints.js"></script>
     <script src="assets/js/models/bullet.js"></script>
     <script src="assets/js/models/snail.js"></script>
+    <script src="assets/js/models/spider.js"></script>
+    <script src="assets/js/models/bird.js"></script>
+    <script src="assets/js/models/rock.js"></script>
     <script src="assets/js/models/fruit.js"></script>
     <script src="assets/js/main.js"></script>
 </body>
