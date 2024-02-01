@@ -331,3 +331,38 @@ ul {
 .hidden {
     display: none;
 }
+
+
+
+
+
+#volumeSlider {
+    position: absolute;
+    top: 100px;
+    right: 22%;
+    width: 70px;
+    height: 10px;
+    appearance: none; 
+    background: #a15930; 
+    outline: none;  
+    z-index: 102;
+}
+
+
+#volumeSlider::-webkit-slider-thumb {
+    appearance: none; 
+    width: 15px;
+    height: 15px;
+    background: #dfa7a7; 
+    border-radius: 0%;
+    cursor: pointer;
+}
+
+#volumeSlider::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    background: #3498db;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+}

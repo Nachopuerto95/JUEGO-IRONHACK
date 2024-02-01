@@ -42,7 +42,7 @@ class Player {
         this.lifes = 1;
         this.tickTour = 0;
 
-        this.audioManager = new AudioManager()
+        this.audioManager = new AudioManager(this.playerTour)
         
     }
 
@@ -91,7 +91,7 @@ class Player {
         } 
     }
     move() {
-         
+         console.log(this.playerTour)
         if (this.x > this.ctx.canvas.width / 4 - this.w ) {
             this.x = this.x;
             this.isInMiddle = true;
@@ -105,7 +105,7 @@ class Player {
             this.x += INITIAL_SPEED;
         } 
 
-        if(this.y < this.y0 && this.lifes > 0) {
+        if(this.y < this.y0) {
             this.movements.isJumping = true;
             this.movements.isfalling = true;
             this.vy += GRAVITY;
@@ -136,7 +136,7 @@ class Player {
     }
 
     jump() {
-        if (!this.movements.isJumping && this.lifes >= 0) {
+        if (!this.movements.isJumping) {
             this.movements.isJumping = true;
             this.y -= Math.ceil(this.h / 2);
             this.vy = -SPEED_JUMP;

@@ -131,11 +131,14 @@ class Game {
 
     takeAFruit() {
         this.audioManager.fruitFX.play();
-        for (let i = 0 ; i <  FRUIT_SCORE; i++) {
-            const j = this.timeBar.length;
-            this.timeBar.push(new Timeunit(this.ctx, 380 + 30 * j,100));
-          }
-        this.timer += FRUIT_SCORE; 
+
+        if (this.timeBar.length < 10) {
+            for (let i = 0 ; i <  FRUIT_SCORE; i++) {
+                const j = this.timeBar.length;
+                this.timeBar.push(new Timeunit(this.ctx, 380 + 30 * j,100));
+            }
+            this.timer += FRUIT_SCORE; 
+        }
         this.drawPoints.push(new Drawpoints(this.ctx, this.player.x + 100, 400, FRUIT_POINTS))
         
     }
@@ -175,6 +178,8 @@ class Game {
         this.canvas.classList.remove('desaturate-50')
         this.calculateTime()
         this.createTimeBar()
+        
+        
 
         if (!this.drawIntervalId) {
             this.drawIntervalId = setInterval(() => {

@@ -46,7 +46,7 @@ const FRUIT_H = 55;
 const FRUIT_SCORE = 3;
 
 const SNAIL_SPAWN_TICK = 500;
-const FRUIT_SPAWN_TICK = 600;
+const FRUIT_SPAWN_TICK = 550;
 const SPIDER_SPAWN_TICK = 800;
 const BIRD_SPAWN_TICK = 1000;
 const ROCK_SPAWN_TICK = 800;
@@ -56,6 +56,6 @@ const FRUIT_POINTS = 100;
 
 const SCORE_KEY = 'scores'
 
-const SPEED_INCREASE = 200;
+const SPEED_INCREASE = 150;
 
  const BIRD_Y = 175;

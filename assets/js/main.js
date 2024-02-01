@@ -45,21 +45,25 @@ window.addEventListener('load', () => {
 
     const scoresList = document.getElementById('allScores')
 
+    const volumeSlider = document.getElementById('volumeSlider')
     
 
 
     
     let scoreMenu = false;
 
-
-   
-
-    const musicPlaying = false;
-
     
-
+    audioManager.setVolume(0.05)
     addScores()
     musicPlayer()
+
+    volumeSlider.addEventListener('input', function() {
+       
+        const volumeValue = parseFloat(volumeSlider.value);
+
+        // Llama a la función setVolume con el nuevo valor
+        audioManager.setVolume(volumeValue);
+    });
 
     function musicPlayer() {
 
@@ -70,12 +74,12 @@ window.addEventListener('load', () => {
                 
 
                 if (gameStarted && !showStartPanel && !game.gameIsOver && !gameMenu) {
-                    audioManager.playWorldMusic();
+                    audioManager.playWorldMusic(game.player.playerTour);
                 } else {
                     audioManager.stopWorldMusic();
                 }
 
-                if (showStartPanel || gameMenu) {
+                if (showStartPanel || gameMenu || showControlsPanel || scoreMenu) {
                     audioManager.playStartMusic();
                 } else {
                     audioManager.stopStartMusic();
@@ -96,7 +100,7 @@ window.addEventListener('load', () => {
 
                 if (game.gamePaused && !pauseSound){
                     pauseSound = true;
-                    audioManager.pauseFX.play;
+                    audioManager.pauseFX.play();
                     
                 }
     
@@ -177,6 +181,7 @@ window.addEventListener('load', () => {
             panel.classList.add('hidden')
 
             if(game) {
+                mainCanvas.classList.remove('hidden')
                 reStart();
             }else{
                 start();
@@ -215,6 +220,7 @@ window.addEventListener('load', () => {
         gameMenu = true;
         gameOverPanel.classList.add('hidden')
         mainCanvas.classList.add('hidden')
+        
         game.gameIsOver = false;
         scoreMenu = false;
     });
@@ -223,6 +229,7 @@ window.addEventListener('load', () => {
         audioManager.playStartFX();
         const playerName = playerNameInput.value;
         game.saveScoreName(playerName);
+        mainCanvas.classList.add('hidden')
         tryAgainBtn.click();
 
         
