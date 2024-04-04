@@ -48,6 +48,8 @@ class Game {
 
         this.audioManager = new AudioManager()
         this.musicPlaying = false
+
+        this.bntEnable = true;
     }
 
     
@@ -62,18 +64,23 @@ class Game {
 
         
         if (this.timer <= 0 || this.player.lifes <= 0 ) {
+
             this.player.isDead = true;
             this.player.jump()
             this.player.y0 = 1000;
             this.gameIsOver = true
             this.canvas.classList.add('desaturate-50')
-            this.gameOverPanel.classList.remove('hidden')
             this.yourScore.textContent = `SCORE: ${this.points}`;
+            this.bntEnable = false;
+            
 
 
             setTimeout(() => {
                 this.stop()
-            }, 2000)
+                this.gameOverPanel.classList.remove('hidden')
+                this.bntEnable = true;
+
+            }, 1500)
         }
 
         

@@ -38,6 +38,10 @@ window.addEventListener('load', () => {
     let showPlayGamePanel = true
     let deathSound = false;
     let pauseSound = false;
+    let scoreMenu = false;
+
+    
+
 
     const saveBtn = document.getElementById('save-name');
     const playerNameInput = document.getElementById('name-input');
@@ -50,7 +54,6 @@ window.addEventListener('load', () => {
 
 
     
-    let scoreMenu = false;
 
     
     audioManager.setVolume(0.05)
@@ -73,7 +76,7 @@ window.addEventListener('load', () => {
             
                 
 
-                if (gameStarted && !showStartPanel && !game.gameIsOver && !gameMenu) {
+                if (gameStarted && !showStartPanel && !game.gameIsOver && !gameMenu && !showControlsPanel && !scoreMenu) {
                     audioManager.playWorldMusic(game.player.playerTour);
                 } else {
                     audioManager.stopWorldMusic();
@@ -90,9 +93,11 @@ window.addEventListener('load', () => {
                     audioManager.deathFX.play();
 
                     setTimeout(() => {
-                        audioManager.deathMusic.play();
+                        audioManager.playDeathMusic();
                     }, 500)
-                } 
+                } else if (!game.gameIsOver && gameMenu){
+                        audioManager.stopDeathMusic()
+                }
 
                 if (game.gamePaused){
                     audioManager.worldMusic.pause();
@@ -179,6 +184,8 @@ window.addEventListener('load', () => {
             
             gameMenu = false
             panel.classList.add('hidden')
+            gameOverPanel.classList.add('hidden')
+
 
             if(game) {
                 mainCanvas.classList.remove('hidden')
@@ -206,10 +213,10 @@ window.addEventListener('load', () => {
     startButtons[2].addEventListener('click', () => { // SCORE BUTTON
         audioManager.startFX.currentTime = 0; 
         audioManager.playStartFX();
+        panel.classList.add('hidden');
+        scorePanel.classList.remove('hidden');
         gameMenu = false
         scoreMenu = true;
-        scorePanel.classList.remove('hidden');
-        panel.classList.add('hidden');
         
     }); 
     
@@ -222,6 +229,7 @@ window.addEventListener('load', () => {
         mainCanvas.classList.add('hidden')
         
         game.gameIsOver = false;
+        game.bntEnable = true;
         scoreMenu = false;
     });
     saveBtn.addEventListener('click', () => { // SAVE BUTTON (GAME OVER PANEL)
@@ -230,25 +238,28 @@ window.addEventListener('load', () => {
         const playerName = playerNameInput.value;
         game.saveScoreName(playerName);
         mainCanvas.classList.add('hidden')
+        gameOverPanel.classList.add('hidden')
+
         tryAgainBtn.click();
 
         
     })
     
     document.addEventListener('keydown', (event) => {
-        if (game.gameIsOver && !gameMenu && !scoreMenu) { 
+      
             
+        if (game.gameIsOver && !gameMenu && !scoreMenu && game.bntEnable){
             handleGameOverInput(event);
-        } else if (gameMenu && !game.gameIsOver && !scoreMenu) {
+        } else if (gameMenu && !game.gameIsOver && !scoreMenu && game.bntEnable) {
             
             handleMenuInput(event);
-        } else if (scoreMenu) {
+        } else if (scoreMenu  && game.bntEnable) {
             
             handleScoresInput(event)
-        } else if (showStartPanel) {
+        } else if (showStartPanel && game.bntEnable) {
             
             handleStartInput(event);
-        }else if (showControlsPanel) {
+        }else if (showControlsPanel && game.bntEnable) {
             
             handleControlsInput(event);
         }else{
@@ -257,7 +268,7 @@ window.addEventListener('load', () => {
     });
 
     document.addEventListener('keyup', (event) => {
-        if (!gameMenu && !game.gameIsOver) {
+        if (!gameMenu && !game.gameIsOver && game.bntEnable) {
             game.onKeyEvent(event);
         }
     });
@@ -300,6 +311,8 @@ window.addEventListener('load', () => {
         if (event.key === 'Enter') {
             event.preventDefault();
             startButtons[selectedButtonIndex].click();
+            selectedButtonIndex = 0;
+            selectedGOButtonIndex = 0;
         } else if (event.key === 'ArrowUp') {
             event.preventDefault();
             audioManager.startFX.currentTime = 0; 
@@ -322,10 +335,10 @@ window.addEventListener('load', () => {
     }
 
     function handleGameOverInput(event) {
-        playerNameInput.focus();
         if (event.key === 'Enter') {
             event.preventDefault();
             GameOverButtons[selectedGOButtonIndex].click();
+            selectedGOButtonIndex = 0;
         } else if (event.key === 'ArrowUp') {
             event.preventDefault();
             audioManager.startFX.currentTime = 0; 

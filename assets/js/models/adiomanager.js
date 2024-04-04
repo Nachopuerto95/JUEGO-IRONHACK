@@ -1,17 +1,17 @@
 class AudioManager {
     constructor(tour) {
-       this.startMusic = new Audio('/assets/sounds/1 - Track 1.mp3') 
-       this.startFX = new Audio('/assets/sounds/sfx13.wav')
+       this.startMusic = new Audio('assets/sounds/1 - Track 1.mp3') 
+       this.startFX = new Audio('assets/sounds/sfx13.wav')
        this.startFX.preload = 'auto'
-       this.worldMusic = new Audio('/assets/sounds/2 - Track 2.mp3')
-       this.deathFX = new Audio('/assets/sounds/sfx12.wav')
-       this.deathMusic = new Audio('/assets/sounds/14 Game Over.mp3')
-       this.fruitFX = new Audio('/assets/sounds/fruit.wav')
-       this.jumpFX = new Audio('/assets/sounds/jump.wav')
-       this.takeFX = new Audio('/assets/sounds/take.wav')
-       this.rockFX = new Audio('/assets/sounds/rock.wav')
-       this.pauseFX = new Audio('/assets/sounds/pause.wav')
-       this.shotFX = new Audio('/assets/sounds/shot.wav')
+       this.worldMusic = new Audio('assets/sounds/2 - Track 2.mp3')
+       this.deathFX = new Audio('assets/sounds/sfx12.wav')
+       this.deathMusic = new Audio('assets/sounds/14 Game Over.mp3')
+       this.fruitFX = new Audio('assets/sounds/fruit.wav')
+       this.jumpFX = new Audio('assets/sounds/jump.wav')
+       this.takeFX = new Audio('assets/sounds/take.wav')
+       this.rockFX = new Audio('assets/sounds/rock.wav')
+       this.pauseFX = new Audio('assets/sounds/pause.wav')
+       this.shotFX = new Audio('assets/sounds/shot.wav')
 
        this.worldMusic.playbackRate = 1;
    
@@ -21,17 +21,17 @@ class AudioManager {
     
        this.musicTick = 0
 
-       this.startMusic.volume = 0.05;
-        this.startFX.volume = 0.05;
-        this.worldMusic.volume = 0.05;
-        this.deathFX.volume = 0.05;
-        this.deathMusic.volume = 0.05;
-        this.fruitFX.volume = 0.08;
-        this.jumpFX.volume = 0.08;
-        this.takeFX.volume = 0.08;
-        this.rockFX.volume = 0.08;
-        this.pauseFX.volume = 0.08;
-        this.shotFX.volume = 0.08;
+       this.startMusic.volume = 0.02;
+        this.startFX.volume = 0.02;
+        this.worldMusic.volume = 0.02;
+        this.deathFX.volume = 0.02;
+        this.deathMusic.volume = 0.02;
+        this.fruitFX.volume = 0.06;
+        this.jumpFX.volume = 0.06;
+        this.takeFX.volume = 0.06;
+        this.rockFX.volume = 0.06;
+        this.pauseFX.volume = 0.06;
+        this.shotFX.volume = 0.06;
     }
 
     setVolume(volume) {
@@ -56,6 +56,15 @@ class AudioManager {
     stopStartMusic() {
         this.startMusic.pause();
         this.startMusic.currentTime = 0;
+    }
+
+    playDeathMusic() {
+        this.deathMusic.play();
+    }
+
+    stopDeathMusic() {
+        this.deathMusic.pause();
+        this.deathMusic.currentTime = 0;
     }
 
     playWorldMusic(tour) {
